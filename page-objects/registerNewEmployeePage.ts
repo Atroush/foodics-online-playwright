@@ -16,14 +16,16 @@ export class RegisterNewEmployeePage {
     saveButtonLocator = '//button[text()="Save"]';
     loaderLocator = '//div[@class="el-loading-spinner"]'
     successNotificationLocator = '//span[text()="Employee successfully created!"]';
+    mobileNumberInputLocator = '//input[@type="number"]';
 
-    async enterEmployeeDetails(firstName: string, lastName: string, userName: string, password: string, email: string, role: string, location: string) {
+    async enterEmployeeDetails(firstName: string, lastName: string, userName: string, password: string, email: string, role: string, location: string, mobileNumber: string) {
         await this.page.waitForSelector(this.loaderLocator, { state: 'hidden' });
         const firstNameInput = this.page.locator(this.firstNameInputLocator);
         const lastNameInput = this.page.locator(this.lastNameInputLocator);
         const userNameInput = this.page.locator(this.userNameInputLocator);
         const passwordInput = this.page.locator(this.passwordInputLocator);
         const emailInput = this.page.locator(this.emailInputLocator);
+        const mobileNumberInput = this.page.locator(this.mobileNumberInputLocator);
 
         await firstNameInput.fill(firstName);
         await lastNameInput.fill(lastName);
@@ -32,6 +34,7 @@ export class RegisterNewEmployeePage {
         await emailInput.fill(email);
         await this.selectRole(role);
         await this.selectLocation(location);
+        await mobileNumberInput.fill('1234567890');
 
     }
     async selectRole(role: string) {

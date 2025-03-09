@@ -8,7 +8,7 @@ export class LoginPage {
         this.page = page;
     }
     async navigateToLoginPage() {
-        await this.page.goto("https://test-merchant-app.getsolo.io/dashboard");
+        await this.page.goto("https://staging-app.getsolo.io/login");
 
     }
     usernameInputLocator = '//input[@placeholder="Username"]';
