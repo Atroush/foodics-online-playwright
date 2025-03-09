@@ -25,7 +25,7 @@ test("Test Add Employee", async ({ page }) => {
     await page.waitForTimeout(12000);
     await navigationPage.navigateToEmployees();
     await employeesPage.openAddEmployeeForm();
-    await registerNewEmployeePage.enterEmployeeDetails("Test", "User", "autoUser2", "1234567mA!", "test123@gmial.com", "Driver", "El Korba");
+    await registerNewEmployeePage.enterEmployeeDetails("Test", "User", "autoUser2", "1234567mA!", "test123@gmial.com", "Driver", "El Korba", "1234567890");
     await registerNewEmployeePage.clickOnSaveButton();
     await registerNewEmployeePage.verifySuccessNotification();
 });
