@@ -1,12 +1,15 @@
-import {Page} from '@playwright/test';
+import { Page } from '@playwright/test';
+const UIActions = require('../utils/UIActions');
+
 export class DashboardPage {
     readonly page: Page;
     constructor(page: Page) {
         this.page = page;
     }
-    dashboardTitleLocator = '//span[@aria-current="location"]//span[text()="Dashboard"]';
+
+    dashboardTitleSelector = '//span[@aria-current="location"]//span[text()="Dashboard"]';
+    
     async verifyDashboardTitle() {
-        const dashboardTitle = this.page.locator(this.dashboardTitleLocator);
-        await dashboardTitle.waitFor({state: 'visible'});
+       await UIActions.waitForElementToBeVisable(this.page, this.dashboardTitleSelector);
     }
 }

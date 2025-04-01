@@ -1,17 +1,15 @@
-import { expect, Page } from '@playwright/test';
+import { Page } from '@playwright/test';
+const UIActions = require('../utils/UIActions');
 export class HeaderPage {
     readonly page: Page;
     constructor(page: Page) {
         this.page = page;
     }
-    profileDropDownLocator = '(//button[contains(@id, "toggle")])[1]';
-    profileLocator = '//p[text()="value"]/parent::div';
+    profileDropDownSelector = '(//button[contains(@id, "toggle")])[1]';
+    profileSelector = '//p[text()="value"]/parent::div';
 
     async chooseProfile(profileName: string) {
-        const profileDropDown = this.page.locator(this.profileDropDownLocator);
-        const profileElement = this.page.locator(this.profileLocator.replace("value", profileName));
-
-        await profileDropDown.click();
-        await profileElement.click();
+        await UIActions.clickElement(this.page, this.profileDropDownSelector);
+        await UIActions.clickElement(this.page, this.profileSelector.replace("value", profileName));
     }
 }

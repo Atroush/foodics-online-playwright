@@ -1,17 +1,16 @@
 import { Page } from '@playwright/test';
+const UIActions = require('../utils/UIActions');
 export class NavigationPage {
     readonly page: Page;
     constructor(page: Page) {
         this.page = page;
     }
-    orderesLocator = '//a[@href="/orders"]';
-    employeesLocator = '//a[@href="/employees"]';
+    orderesSelector = '//a[@href="/orders"]';
+    employeesSelector = '//a[@href="/employees"]';
     async navigateToEmployees() {
-        const employees = this.page.locator(this.employeesLocator);
-        await employees.click();
+        await UIActions.clickElement(this.page, this.employeesSelector);
     }
     async navigateToOrders() {
-        const orders = this.page.locator(this.orderesLocator);
-        await orders.click();
+        await UIActions.clickElement(this.page, this.orderesSelector);
     }
 }

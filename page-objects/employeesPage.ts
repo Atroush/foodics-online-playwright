@@ -1,4 +1,5 @@
-import { Page, expect } from '@playwright/test';
+import { Page } from '@playwright/test';
+const UIActions = require('../utils/UIActions');
 
 export class EmployeesPage {
     readonly page: Page;
@@ -6,14 +7,13 @@ export class EmployeesPage {
         this.page = page;
     }
 
-    employeeUserNameLocator = '//div[text()="value"]';
-    addEmployeeButtonLocator = '#newEmployee';
-    loaderLocator = '//div[@class="el-loading-spinner"]'
+    employeeUserNamSelector = '//div[text()="value"]';
+    addEmployeeButtonSelector = '#newEmployee';
+    
     async openAddEmployeeForm() {
-        await this.page.click(this.addEmployeeButtonLocator);
+        await UIActions.clickElement(this.page, this.addEmployeeButtonSelector);
     }
     async verifyEmployeeExsistance(userName: string) {
-        const employeeUserName = this.page.locator(this.employeeUserNameLocator.replace("value", userName));
-        await expect(employeeUserName).toBeVisible();
+        await UIActions.waitForElementToBeVisable(this.page, this.employeeUserNamSelector.replace("value", userName));
     }
 }

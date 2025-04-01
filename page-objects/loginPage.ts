@@ -1,27 +1,19 @@
 import { Page } from "@playwright/test";
-
-
+const UIActions = require('../utils/UIActions');
 export class LoginPage {
     readonly page: Page;
-
     constructor(page: Page) {
         this.page = page;
     }
-    async navigateToLoginPage() {
-        await this.page.goto("https://staging-app.getsolo.io/login");
+    usernameInputSelector = '//input[@placeholder="Username"]';
+    passwordInputSelector = '//input[@placeholder="Password"]';
+    loginButtonSelector = '//button[@type="submit"]';
 
-    }
-    usernameInputLocator = '//input[@placeholder="Username"]';
-    passwordInputLocator = '//input[@placeholder="Password"]';
-    loginButtonLocator = '//button[@type="submit"]';
-    async enterUserCredintials(username, password) {
-        const usernameInput = await this.page.locator(this.usernameInputLocator);
-        const passwordInput = await this.page.locator(this.passwordInputLocator);
-        await usernameInput.fill(username);
-        await passwordInput.fill(password);
+    async enterUserCredintials(username: string, password: string) {
+        await UIActions.typeText(this.page, this.usernameInputSelector, username);
+        await UIActions.typeText(this.page, this.passwordInputSelector, password);
     }
     async clickOnLoginButton() {
-        const loginButton = await this.page.locator(this.loginButtonLocator);
-        await loginButton.click();
+        await UIActions.clickElement(this.page, this.loginButtonSelector);
     }
 }
