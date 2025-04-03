@@ -1,5 +1,5 @@
 // utils/BrowserActions.js
-class BrowserActions {
+export class BrowserActions {
   // Navigate to a URL
   async navigateTo(page, url) {
     await page.goto(url);
@@ -34,4 +34,4 @@ class BrowserActions {
   }
 }
 
-module.exports = new BrowserActions();
+
