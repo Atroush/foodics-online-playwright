@@ -8,11 +8,12 @@ import { DashboardPage } from '../page-objects/dashboardPage';
 import { JsonHelper } from '../utils/jsonHelper';
 import {BrowserActions}from'../utils/browserActions';
 import { Helper } from '../utils/Helper';
-import { json } from 'stream/consumers';
+import { ConfigReader} from '../utils/configReader';
 
 var employeeData;
 var userName;
 const jsonHelper = new JsonHelper();
+const configReader = new ConfigReader('config/test-config.properties');
 const helper= new Helper();
 test.beforeEach("Login and Select The Concept", async ({ page }) => {
     const dashboardPage = new DashboardPage(page);
@@ -28,10 +29,10 @@ test.beforeEach("Login and Select The Concept", async ({ page }) => {
     }
    
     
-    await browserActions.navigateTo(page, "https://staging-app.getsolo.io");
-    await loginPage.enterUserCredintials("skylinedynamics", "@Test123");
+    await browserActions.navigateTo(page, configReader.get("url"));
+    await loginPage.enterUserCredintials(configReader.get("username"), configReader.get("password"));
     await loginPage.clickOnLoginButton();
-    await headerPage.chooseProfile("Dunkin' Egypt");
+    await headerPage.chooseConcept(configReader.get("conceptName"));
     await dashboardPage.verifyDashboardTitle();
     await page.waitForTimeout(12000);
     await navigationPage.navigateToEmployees();

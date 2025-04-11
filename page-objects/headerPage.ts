@@ -5,11 +5,11 @@ export class HeaderPage {
     constructor(page: Page) {
         this.page = page;
     }
-    profileDropDownSelector = '(//button[contains(@id, "toggle")])[1]';
-    profileSelector = '//p[text()="value"]/parent::div';
+    conceptDropDownSelector = '(//button[contains(@id, "toggle")])[1]';
+    conceptSelector = '//p[text()="value"]/parent::div';
 
-    async chooseProfile(profileName: string) {
-        await UIActions.clickElement(this.page, this.profileDropDownSelector);
-        await UIActions.clickElement(this.page, this.profileSelector.replace("value", profileName));
+    async chooseConcept(profileName: string) {
+        await UIActions.clickElement(this.page, this. conceptDropDownSelector);
+        await UIActions.clickElement(this.page, this. conceptSelector.replace("value", profileName));
     }
 }
