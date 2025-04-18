@@ -17,8 +17,10 @@ export class RegisterNewEmployeePage {
     locationsDropDownButtonSelector = '//label[text()="Locations"]/parent::div//div[@class="el-select__tags"]//input';
     locationSelector = '//li[@name="value"]';
     saveButtonSelector = '//button[text()="Save"]';
+    updateButtonSelector='//button[text()="Update"]';
     loaderSelector = '//div[@class="el-loading-spinner"]'
     successNotificationSelector = '//span[text()="Employee successfully created!"]';
+    employeeUpdatedNotificationSelector = '//span[text()="Employee successfully updated!"]';
 
     async enterEmployeeDetails(firstName: string, lastName: string, userName: string, password: string, email: string, mobile: string, role: string, location: string) {
         await UIActions.waitForElementToBeHidden(this.page, this.loaderSelector);
@@ -42,8 +44,14 @@ export class RegisterNewEmployeePage {
     async clickOnSaveButton() {
         await UIActions.clickElement(this.page, this.saveButtonSelector);
     }
+    async clickOnUpdateButton() {
+        await UIActions.clickElement(this.page, this.updateButtonSelector);
+    }   
     async verifySuccessNotification() {
         await UIActions.waitForElementToBeVisable(this.page, this.successNotificationSelector);
+    }
+    async verifyEmployeeUpdatedSuccessfully() {
+        await UIActions.waitForElementToBeVisable(this.page, this.employeeUpdatedNotificationSelector);
     }
 
 }

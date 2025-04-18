@@ -5,6 +5,12 @@ class UIActions {
     await page.click(selector);
   }
 
+  async clickElementInRow(page, rowName: string, buttonSelector: string) {
+    const row = page.getByRole('row', { name: rowName });
+    const button = row.locator(buttonSelector);
+    await button.click();
+  }
+
   // Type text into an input field
   async typeText(page, selector, text) {
     await page.fill(selector, text);
@@ -17,7 +23,7 @@ class UIActions {
 
   async waitForElementToBeVisable(page, selector) {
     const locator = page.locator(selector);
-  await locator.waitFor({ state: 'visible', timeout: 9000 }); 
+    await locator.waitFor({ state: 'visible', timeout: 9000 });
   }
   async waitForElementToBeHidden(page, selector) {
     await page.waitForSelector(selector, { state: 'hidden' });
@@ -43,6 +49,13 @@ class UIActions {
     const element = await page.$(selector);
     return element ? await element.isVisible() : false;
   }
+  async isElementNotVisible(page, selector) {
+    const locator = page.locator(selector);
+    const count = await locator.count();
+    if (count === 0) { return true; }// Element does not exist at all
+    else { return false; }
+  }
+
 }
 
 module.exports = new UIActions();
