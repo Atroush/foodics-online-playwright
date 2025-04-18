@@ -2,3 +2,4 @@
 test-data/createEmployee.json
 playwright-report/index.html
 .DS_Store
+/test-results

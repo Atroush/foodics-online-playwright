@@ -10,7 +10,7 @@ import { BrowserActions } from '../utils/browserActions';
 import { Helper } from '../utils/Helper';
 import { ConfigReader } from '../utils/configReader';
 
-
+test.describe.serial('FOM - Employee CRUD Flow', () => {
 var userName;
 const jsonHelper = new JsonHelper();
 const configReader = new ConfigReader('config/test-config.properties');
@@ -89,3 +89,4 @@ test("FOM-1347 - Employee - Verify user can Delete an Employee", async ({ page }
         await employeesPage.verifyEmployeeNotExist(employeeData.updatedUserName);
     }
 })
+});
